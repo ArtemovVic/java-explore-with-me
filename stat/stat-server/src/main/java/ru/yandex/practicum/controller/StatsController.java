@@ -22,6 +22,7 @@ import java.util.List;
 @Validated
 @Slf4j
 public class StatsController {
+    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     private final StatsService statsService;
 
@@ -35,10 +36,10 @@ public class StatsController {
     @GetMapping("/stats")
     @ResponseStatus(HttpStatus.OK)
     public List<StatHitDto> getStats(
-            @RequestParam @NotNull @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
-            @RequestParam @NotNull @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
+            @RequestParam @NotNull @DateTimeFormat(pattern = DATE_TIME_PATTERN) LocalDateTime start,
+            @RequestParam @NotNull @DateTimeFormat(pattern = DATE_TIME_PATTERN) LocalDateTime end,
             @RequestParam(required = false) List<String> uris,
-            @RequestParam(required = false, defaultValue = "false") boolean unique
+            @RequestParam(defaultValue = "false") boolean unique
     ) {
         log.info("Getting stats ");
         return statsService.getStats(
