@@ -19,5 +19,5 @@ public class StatHitDto {
     private String uri;
 
     @NotNull
-    private Long hits;
+    private Integer hits;
 }

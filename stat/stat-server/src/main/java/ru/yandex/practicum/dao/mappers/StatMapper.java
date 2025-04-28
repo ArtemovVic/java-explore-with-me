@@ -7,7 +7,7 @@ import ru.yandex.practicum.dto.ViewStats;
 @Component
 public class StatMapper {
 
-    public StatHitDto toStatDto(ViewStats dto) {
+    public static StatHitDto toStatDto(ViewStats dto) {
         return StatHitDto.builder()
                 .app(dto.getApp())
                 .uri(dto.getUri())

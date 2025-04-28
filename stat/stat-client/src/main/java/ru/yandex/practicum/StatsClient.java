@@ -52,7 +52,10 @@ public class StatsClient {
                 )
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<StatHitDto>>() {})
-                .doOnError(e -> log.error("Failed to getting stats", e))
+                .doOnError(e -> {
+                    log.error("Failed to getting stats", e);
+                    log.error("dto {}", dto);
+                })
                 .onErrorReturn(Collections.emptyList())
                 .block();
 
