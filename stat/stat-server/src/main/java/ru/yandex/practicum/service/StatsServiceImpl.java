@@ -9,9 +9,10 @@ import ru.yandex.practicum.dao.model.Hit;
 import ru.yandex.practicum.dto.RequestCreateHitDto;
 import ru.yandex.practicum.dto.RequestStatDto;
 import ru.yandex.practicum.dto.StatHitDto;
+import ru.yandex.practicum.exception.InvalidArgumentException;
 import ru.yandex.practicum.repository.HitRepository;
 
-import java.security.InvalidParameterException;
+
 import java.util.List;
 
 @Service
@@ -38,7 +39,7 @@ public class StatsServiceImpl implements StatsService {
     public List<StatHitDto> getStats(RequestStatDto paramsDto) {
 
         if (paramsDto.getStart().isAfter(paramsDto.getEnd())) {
-            throw new InvalidParameterException("Start date cannot be after end date");
+            throw new InvalidArgumentException("Start date cannot be after end date");
         }
 
         if (paramsDto.getUris() == null || paramsDto.getUris().isEmpty()) {
