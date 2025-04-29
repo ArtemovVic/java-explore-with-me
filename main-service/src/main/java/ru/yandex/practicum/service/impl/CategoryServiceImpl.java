@@ -1,4 +1,4 @@
-package ru.yandex.practicum.service;
+package ru.yandex.practicum.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +17,7 @@ import ru.yandex.practicum.exception.NotFoundException;
 import ru.yandex.practicum.exception.UniqueException;
 import ru.yandex.practicum.repository.CategoryRepository;
 import ru.yandex.practicum.repository.EventRepository;
-import ru.yandex.practicum.service.util.CategoryService;
+import ru.yandex.practicum.service.CategoryService;
 
 import java.util.List;
 

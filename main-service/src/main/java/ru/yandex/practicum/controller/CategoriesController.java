@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dao.model.constant.Constant;
 import ru.yandex.practicum.dto.category.CategoryDto;
-import ru.yandex.practicum.service.util.CategoryService;
+import ru.yandex.practicum.service.CategoryService;
 
 import java.util.List;
 

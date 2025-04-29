@@ -1,4 +1,4 @@
-package ru.yandex.practicum.service.util;
+package ru.yandex.practicum.service;
 
 import java.util.Map;
 import java.util.Set;

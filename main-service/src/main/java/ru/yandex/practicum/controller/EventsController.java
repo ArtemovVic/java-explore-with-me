@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.dto.event.EventDto;
 import ru.yandex.practicum.dto.event.SearchEventDto;
-import ru.yandex.practicum.service.util.EventService;
-import ru.yandex.practicum.service.util.StatsService;
+import ru.yandex.practicum.service.EventService;
+import ru.yandex.practicum.service.StatsService;
 
 import java.util.List;
 

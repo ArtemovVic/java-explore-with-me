@@ -1,4 +1,4 @@
-package ru.yandex.practicum.service.util;
+package ru.yandex.practicum.service;
 
 import ru.yandex.practicum.dto.event.EventRequestDto;
 import ru.yandex.practicum.dto.event.EventRequestResultDto;

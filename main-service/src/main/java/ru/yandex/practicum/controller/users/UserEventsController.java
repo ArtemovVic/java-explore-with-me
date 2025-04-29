@@ -9,8 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dao.model.constant.Constant;
 import ru.yandex.practicum.dto.event.*;
-import ru.yandex.practicum.service.util.EventRequestService;
-import ru.yandex.practicum.service.util.EventService;
+import ru.yandex.practicum.service.EventRequestService;
+import ru.yandex.practicum.service.EventService;
 
 import java.util.List;
 

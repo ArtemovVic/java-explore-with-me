@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dao.model.constant.Constant;
 import ru.yandex.practicum.dto.compilation.CompilationDto;
-import ru.yandex.practicum.service.util.CompilationService;
+import ru.yandex.practicum.service.CompilationService;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class CompilationController {
 
     @GetMapping
     public List<CompilationDto> getList(
-            @RequestParam(value = "pinned", defaultValue = "false") boolean pinned,
-            @RequestParam(value = "from", defaultValue = Constant.INT_MIN_STRING) @PositiveOrZero int from,
-            @RequestParam(value = "size", defaultValue = "10") @Positive int size
+            @RequestParam(defaultValue = "false") boolean pinned,
+            @RequestParam(defaultValue = Constant.INT_MIN_STRING) @PositiveOrZero int from,
+            @RequestParam(defaultValue = "10") @Positive int size
     ) {
         return compilationService.getList(pinned, from, size);
     }

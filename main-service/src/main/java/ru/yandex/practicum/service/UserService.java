@@ -1,4 +1,4 @@
-package ru.yandex.practicum.service.util;
+package ru.yandex.practicum.service;
 
 import ru.yandex.practicum.dto.admin.user.AdminCreateUserDto;
 import ru.yandex.practicum.dto.admin.user.AdminUserDto;

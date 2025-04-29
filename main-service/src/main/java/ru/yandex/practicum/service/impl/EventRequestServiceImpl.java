@@ -1,4 +1,4 @@
-package ru.yandex.practicum.service;
+package ru.yandex.practicum.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
@@ -20,7 +20,7 @@ import ru.yandex.practicum.exception.NotFoundException;
 import ru.yandex.practicum.repository.EventRepository;
 import ru.yandex.practicum.repository.EventRequestRepository;
 import ru.yandex.practicum.repository.UserRepository;
-import ru.yandex.practicum.service.util.EventRequestService;
+import ru.yandex.practicum.service.EventRequestService;
 
 import java.util.ArrayList;
 import java.util.List;

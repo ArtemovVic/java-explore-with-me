@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dto.admin.event.AdminSearchEventDto;
 import ru.yandex.practicum.dto.admin.event.AdminUpdateEventDto;
 import ru.yandex.practicum.dto.event.EventDto;
-import ru.yandex.practicum.service.util.EventService;
+import ru.yandex.practicum.service.EventService;
 
 import java.util.List;
 

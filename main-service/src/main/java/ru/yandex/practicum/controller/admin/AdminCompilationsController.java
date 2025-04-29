@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dto.admin.compilation.AdminCreateCompilationDto;
 import ru.yandex.practicum.dto.admin.compilation.AdminUpdateCompilationDto;
 import ru.yandex.practicum.dto.compilation.CompilationDto;
-import ru.yandex.practicum.service.util.CompilationService;
+import ru.yandex.practicum.service.CompilationService;
 
 @RestController
 @RequestMapping("/admin/compilations")

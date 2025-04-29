@@ -1,4 +1,4 @@
-package ru.yandex.practicum.service.util;
+package ru.yandex.practicum.service;
 
 import ru.yandex.practicum.dao.model.Event;
 import ru.yandex.practicum.dto.admin.event.AdminSearchEventDto;

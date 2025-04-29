@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dao.model.constant.Constant;
 import ru.yandex.practicum.dto.admin.user.AdminCreateUserDto;
 import ru.yandex.practicum.dto.admin.user.AdminUserDto;
-import ru.yandex.practicum.service.util.UserService;
+import ru.yandex.practicum.service.UserService;
 
 
 import java.util.List;

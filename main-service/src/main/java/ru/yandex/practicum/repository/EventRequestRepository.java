@@ -2,7 +2,6 @@ package ru.yandex.practicum.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.dao.model.EventRequest;
 import ru.yandex.practicum.dao.model.constant.EventRequestState;
 
@@ -11,7 +10,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-@Repository
 public interface EventRequestRepository extends JpaRepository<EventRequest, Long> {
     List<EventRequest> findAllByEvent_Id(Long eventId);
 

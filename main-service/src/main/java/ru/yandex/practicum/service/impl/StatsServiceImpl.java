@@ -1,4 +1,4 @@
-package ru.yandex.practicum.service;
+package ru.yandex.practicum.service.impl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,7 +7,7 @@ import ru.yandex.practicum.StatsClient;
 import ru.yandex.practicum.dto.RequestCreateHitDto;
 import ru.yandex.practicum.dto.StatGetRequestDto;
 import ru.yandex.practicum.dto.StatHitDto;
-import ru.yandex.practicum.service.util.StatsService;
+import ru.yandex.practicum.service.StatsService;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dto.admin.category.AdminCategoryDto;
 import ru.yandex.practicum.dto.admin.category.AdminCreateCategoryDto;
 import ru.yandex.practicum.dto.admin.category.AdminUpdateCategoryDto;
-import ru.yandex.practicum.service.util.CategoryService;
+import ru.yandex.practicum.service.CategoryService;
 
 @RestController
 @RequestMapping("/admin/categories")
