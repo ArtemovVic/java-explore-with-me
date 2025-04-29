@@ -9,8 +9,9 @@ import ru.yandex.practicum.dao.model.Hit;
 import ru.yandex.practicum.dto.RequestCreateHitDto;
 import ru.yandex.practicum.dto.RequestStatDto;
 import ru.yandex.practicum.dto.StatHitDto;
-import ru.yandex.practicum.dto.ViewStats;
+import ru.yandex.practicum.exception.InvalidArgumentException;
 import ru.yandex.practicum.repository.HitRepository;
+
 
 import java.util.List;
 
@@ -20,7 +21,6 @@ import java.util.List;
 public class StatsServiceImpl implements StatsService {
 
     private final HitRepository hitRepository;
-    private final StatMapper statMapper;
 
     @Override
     @Transactional
@@ -32,22 +32,30 @@ public class StatsServiceImpl implements StatsService {
         hit.setTimestamp(hitDto.getTimestamp());
 
         hitRepository.save(hit);
-        log.info("Saved hit: {}", hit);
     }
 
     @Override
     @Transactional
-    public List<StatHitDto> getStats(RequestStatDto dto) {
+    public List<StatHitDto> getStats(RequestStatDto paramsDto) {
 
-        List<ViewStats> stats = hitRepository.findStats(
-                dto.getStart(),
-                dto.getEnd(),
-                dto.getUris() != null && !dto.getUris().isEmpty() ? dto.getUris() : null,
-                dto.isUnique()
-        );
+        if (paramsDto.getStart().isAfter(paramsDto.getEnd())) {
+            throw new InvalidArgumentException("Start date cannot be after end date");
+        }
 
-        return stats.stream()
-                .map(statMapper::toStatDto)
+        if (paramsDto.getUris() == null || paramsDto.getUris().isEmpty()) {
+            return (paramsDto.isUnique()
+                    ? hitRepository.getStatsByDatesUnique(paramsDto.getStart(), paramsDto.getEnd())
+                    : hitRepository.getStatsByDates(paramsDto.getStart(), paramsDto.getEnd()))
+                    .stream()
+                    .map(StatMapper::toStatDto)
+                    .toList();
+        }
+
+        return (paramsDto.isUnique()
+                ? hitRepository.getStatsByDatesAndUriUnique(paramsDto.getStart(), paramsDto.getEnd(), paramsDto.getUris())
+                : hitRepository.getStatsByDatesAndUri(paramsDto.getStart(), paramsDto.getEnd(), paramsDto.getUris()))
+                .stream()
+                .map(StatMapper::toStatDto)
                 .toList();
     }
 }
