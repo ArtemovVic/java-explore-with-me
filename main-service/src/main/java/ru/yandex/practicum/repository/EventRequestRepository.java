@@ -30,4 +30,6 @@ public interface EventRequestRepository extends JpaRepository<EventRequest, Long
     boolean existsByEvent_IdAndUser_Id(Long eventId, Long userId);
 
     Optional<EventRequest> findByIdAndUser_Id(Long id, Long userId);
+
+    boolean existsByEvent_IdAndUser_IdAndStateIs(Long eventId, Long userId, EventRequestState eventRequestState);
 }
