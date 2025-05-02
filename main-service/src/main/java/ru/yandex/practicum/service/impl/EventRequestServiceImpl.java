@@ -78,10 +78,7 @@ public class EventRequestServiceImpl implements EventRequestService {
         if (!pendingLeft.isEmpty()) {
             // Если лимит исчерпан, то отменяем оставшиеся заявки
             eventRequestRepository.saveAll(
-                    pendingLeft.stream().map(el -> {
-                        el.setState(EventRequestState.REJECTED);
-                        return el;
-                    }).toList()
+                    pendingLeft.stream().peek(el -> el.setState(EventRequestState.REJECTED)).toList()
             );
         }
 

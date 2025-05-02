@@ -8,7 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dao.model.constant.Constant;
+import ru.yandex.practicum.dto.comment.CommentDto;
+import ru.yandex.practicum.dto.comment.UserCreateCommentDto;
+import ru.yandex.practicum.dto.comment.UserUpdateCommentDto;
 import ru.yandex.practicum.dto.event.*;
+import ru.yandex.practicum.service.CommentService;
 import ru.yandex.practicum.service.EventRequestService;
 import ru.yandex.practicum.service.EventService;
 
@@ -22,12 +26,13 @@ public class UserEventsController {
 
     private final EventService eventService;
     private final EventRequestService eventRequestService;
+    private final CommentService commentService;
 
     @GetMapping
     public List<EventDto> getList(
             @PathVariable @Positive Long userId,
-            @RequestParam(value = "from", defaultValue = Constant.INT_MIN_STRING) @PositiveOrZero int from,
-            @RequestParam(value = "size", defaultValue = "10") @Positive int size
+            @RequestParam(defaultValue = Constant.INT_MIN_STRING) @PositiveOrZero int from,
+            @RequestParam(defaultValue = "10") @Positive int size
     ) {
         return eventService.getListByUser(userId, from, size);
     }
@@ -73,5 +78,37 @@ public class UserEventsController {
             @RequestBody @Valid UpdateEventRequestsDto dto
     ) {
         return eventRequestService.updateByEventIdAndStatusId(eventId, userId, dto);
+    }
+
+    @PostMapping("/{eventId}/comments")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentDto addComment(
+            @PathVariable @Positive Long userId,
+            @PathVariable @Positive Long eventId,
+            @RequestBody @Valid UserCreateCommentDto dto
+    ) {
+        return commentService.create(eventId, userId, dto);
+    }
+
+    @PatchMapping("/{eventId}/comments/{commentId}")
+    public CommentDto updateComment(
+            @PathVariable @Positive Long userId,
+            @PathVariable @Positive Long eventId,
+            @PathVariable @Positive Long commentId,
+            @RequestBody @Valid UserUpdateCommentDto dto
+    ) {
+        dto.setId(commentId);
+
+        return commentService.update(eventId, userId, dto);
+    }
+
+    @DeleteMapping("/{eventId}/comments/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteComment(
+            @PathVariable @Positive Long userId,
+            @PathVariable @Positive Long eventId,
+            @PathVariable @Positive Long commentId
+    ) {
+        commentService.deleteByAuthor(eventId, userId, commentId);
     }
 }

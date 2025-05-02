@@ -6,29 +6,26 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dao.model.constant.Constant;
-import ru.yandex.practicum.dto.category.CategoryDto;
-import ru.yandex.practicum.service.CategoryService;
+import ru.yandex.practicum.dto.comment.CommentDto;
+import ru.yandex.practicum.service.CommentService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/events/{eventId}/comments")
 @Validated
 @RequiredArgsConstructor
-public class CategoriesController {
+public class CommentsController {
 
-    private final CategoryService categoryService;
+    private final CommentService commentService;
 
     @GetMapping
-    public List<CategoryDto> getList(
+    public List<CommentDto> getEventComments(
+            @PathVariable @Positive Long eventId,
             @RequestParam(defaultValue = Constant.INT_MIN_STRING) @PositiveOrZero int from,
             @RequestParam(defaultValue = "10") @Positive int size
     ) {
-        return categoryService.getList(from, size);
+        return commentService.getListByEvent(eventId, from, size);
     }
 
-    @GetMapping("/{catId}")
-    public CategoryDto getById(@PathVariable Long catId) {
-        return categoryService.getById(catId);
-    }
 }
